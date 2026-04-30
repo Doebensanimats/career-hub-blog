@@ -13,10 +13,11 @@
 <body>
 
 <nav>
-    <a href="{{ url_for('index') }}">Home</a>
-    <a href="{{ url_for('blog_list') }}">Blog</a>
-    <a href="{{ url_for('add_post') }}">Add Post</a>
+    <a href="{{ url_for('main.index') }}">Home</a>
+    <a href="{{ url_for('blog.blog_list') }}">Blog</a>
+    <a href="{{ url_for('blog.add_post') }}">Add Post</a>
 </nav>
+
 
 <main class="main">
   {% block content %}{% endblock %}

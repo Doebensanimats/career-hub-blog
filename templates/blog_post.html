@@ -1,18 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>{{ post.title }}</title>
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+<a class="back" href="{{ url_for('blog.blog_list') }}">← Back to Blog</a>
+
+<h1>{{ post.title }}</h1>
+
+<div class="meta">
+    By {{ post.author if post.author else "Admin" }} • 
+    {{ post.date.strftime('%B %d, %Y') }}
+</div>
+
+<div class="content">
+    {{ post.content }}
+</div>
+
+</div>
 
 <style>
-body {
-    font-family: Georgia, serif;
-    background: #f7f4ee;
-    margin: 0;
-    padding: 40px;
-    color: #0f1a14;
-}
-
 .container {
     max-width: 800px;
     margin: auto;
@@ -46,24 +53,4 @@ h1 {
 }
 </style>
 
-</head>
-<body>
-
-<div class="container">
-
-<a class="back" href="/posts">← Back to Blog</a>
-
-<h1>{{ post.title }}</h1>
-
-<div class="meta">
-    By Unknown Author
-</div>
-
-<div class="content">
-    {{ post.content }}
-</div>
-
-</div>
-
-</body>
-</html>
+{% endblock %}

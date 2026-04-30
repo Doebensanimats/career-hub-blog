@@ -1,28 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Edit Post</title>
+{% extends "base.html" %}
+
+{% block content %}
 
 <style>
-body {
-    font-family: Georgia, serif;
-    background: #f7f4ee;
-    margin: 0;
-    padding: 40px;
-    color: #0f1a14;
-}
-
 .container {
     max-width: 700px;
     margin: auto;
     background: white;
     padding: 30px;
     border-left: 5px solid #006d64;
-}
-
-h1 {
-    margin-bottom: 20px;
 }
 
 input, textarea {
@@ -40,34 +26,29 @@ button {
     border: none;
     cursor: pointer;
 }
-
-a {
-    display: inline-block;
-    margin-top: 15px;
-    color: #006d64;
-    text-decoration: none;
-    font-weight: bold;
-}
 </style>
-
-</head>
-<body>
 
 <div class="container">
 
 <h1>Edit Post</h1>
 
-<form method="POST">
+<form method="POST" action="{{ url_for('blog.edit_post', id=post.id) }}">
+
+    <!-- Title -->
     <input type="text" name="title" value="{{ post.title }}" required>
 
+    <!-- Author (ADD IT HERE) -->
+    <input type="text" name="author" value="{{ post.author }}" placeholder="Author">
+
+    <!-- Content -->
     <textarea name="content" rows="10" required>{{ post.content }}</textarea>
 
     <button type="submit">Update Post</button>
+
 </form>
 
-<a href="/posts">← Back to Blog</a>
+<a href="{{ url_for('blog.blog_list') }}">← Back to Blog</a>
 
 </div>
 
-</body>
-</html>
+{% endblock %}

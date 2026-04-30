@@ -1,28 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Blog</title>
+{% extends "base.html" %}
+
+{% block content %}
 
 <style>
-body {
-    font-family: Georgia, serif;
-    background: #f7f4ee;
-    margin: 0;
-    padding: 40px;
-    color: #0f1a14;
-}
-
 .container {
     max-width: 800px;
     margin: auto;
-}
-
-h1 {
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-    border-bottom: 2px solid #c8c4b8;
-    padding-bottom: 10px;
 }
 
 .post-card {
@@ -30,33 +13,17 @@ h1 {
     padding: 20px;
     margin-bottom: 20px;
     border-left: 5px solid #006d64;
-    transition: 0.2s ease;
-}
-
-.post-card:hover {
-    transform: translateY(-2px);
 }
 
 .post-title {
     font-size: 1.4rem;
-    margin: 0;
 }
 
 .post-meta {
     font-size: 0.8rem;
     color: #6b7068;
-    margin-bottom: 10px;
-}
-
-a {
-    text-decoration: none;
-    color: #006d64;
-    font-weight: bold;
 }
 </style>
-
-</head>
-<body>
 
 <div class="container">
 
@@ -68,17 +35,30 @@ a {
     <h2 class="post-title">{{ post.title }}</h2>
 
     <div class="post-meta">
-        By Unknown Author
+        {{ post.date }} • {{ post.author }}
     </div>
 
     <p>{{ post.content[:150] }}...</p>
 
-    <a href="/post/{{ loop.index0 }}">Read more →</a>
+    <a href="{{ url_for('blog.blog_post', id=post.id) }}">Read</a> |
+    <a href="{{ url_for('blog.edit_post', id=post.id) }}">Edit</a> |
+
+    <!-- ✅ SAFE DELETE -->
+    <form method="POST"
+          action="{{ url_for('blog.delete_post', id=post.id) }}"
+          style="display:inline;">
+
+        <button type="submit"
+                onclick="return confirm('Delete this post?')"
+                style="background:none;border:none;color:#006d64;cursor:pointer;font-weight:bold;">
+            Delete
+        </button>
+
+    </form>
 
 </div>
 {% endfor %}
 
 </div>
 
-</body>
-</html>
+{% endblock %}

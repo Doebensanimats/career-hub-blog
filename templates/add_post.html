@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Add New Post</title>
+{% extends "base.html" %}
+
+{% block content %}
 
 <style>
-body {
-    font-family: Arial;
-    background: #f7f4ee;
-    padding: 40px;
-}
-
 .container {
     max-width: 600px;
     margin: auto;
@@ -40,18 +32,13 @@ button:hover {
 }
 </style>
 
-</head>
-<body>
-
 <div class="container">
 
 <h2>Create New Blog Post</h2>
 
-<form method="POST">
+<form method="POST" action="{{ url_for('blog.add_post') }}">
 
     <input name="title" placeholder="Title" required>
-
-    <input name="slug" placeholder="Slug (e.g. ai-healthcare-future)" required>
 
     <input name="author" placeholder="Author" required>
 
@@ -63,5 +50,4 @@ button:hover {
 
 </div>
 
-</body>
-</html>
+{% endblock %}

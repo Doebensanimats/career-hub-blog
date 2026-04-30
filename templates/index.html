@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% block title %}Career Hub — Job Search Tools{% endblock %}
 
 {% block content %}
+
 <div class="home-hero">
   <p class="home-eyebrow">your job search, organised</p>
   <h1 class="home-title">Career Hub</h1>
@@ -10,19 +10,22 @@
 
 <div class="page-grid">
   {% for page in pages %}
-  <a href="{{ page.url }}" class="page-card {% if page.status == 'coming soon' %}page-card--dim{% endif %}">
+  <a href="{{ url_for(page.endpoint) }}" class="page-card {% if page.status == 'coming soon' %}page-card--dim{% endif %}">
     <div class="page-card-top">
       <span class="page-tag page-tag--{{ page.tag_color }}">{{ page.tag }}</span>
+
       {% if page.status == 'coming soon' %}
       <span class="page-status">coming soon</span>
       {% else %}
       <span class="page-status page-status--live">live</span>
       {% endif %}
     </div>
+
     <h2 class="page-card-title">{{ page.title }}</h2>
     <p class="page-card-desc">{{ page.description }}</p>
     <span class="page-card-arrow">→</span>
   </a>
   {% endfor %}
 </div>
+
 {% endblock %}
