@@ -1,7 +1,21 @@
-
-venv/
+# Python cache
 __pycache__/
 *.pyc
-instance/
+
+# Virtual environment
+venv/
+env/
+
+# Database (IMPORTANT)
+blog.db
+*.sqlite3
+
+# Environment variables
 .env
+
+# Flask instance folder
+instance/
+
+# OS files
 .DS_Store
+Thumbs.db

@@ -1,5 +1,6 @@
 aioice==0.10.2
 aiortc==1.14.0
+alembic==1.18.4
 altair==4.2.2
 amazon-transcribe==0.6.4
 annotated-doc==0.0.4
@@ -30,6 +31,7 @@ fastapi==0.136.0
 filelock==3.25.1
 firebase_admin==7.4.0
 Flask==3.1.3
+Flask-Migrate==4.1.0
 Flask-SQLAlchemy==3.1.1
 Frozen-Flask==1.0.2
 fsspec==2026.3.0
@@ -63,6 +65,7 @@ jsonschema-specifications==2025.9.1
 langdetect==1.0.9
 llvmlite==0.47.0
 lxml==6.1.0
+Mako==1.3.12
 MarkupSafe==3.0.3
 more-itertools==11.0.1
 mpmath==1.3.0
