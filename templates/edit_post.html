@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Edit Post</title>
+
+<style>
+body {
+    font-family: Georgia, serif;
+    background: #f7f4ee;
+    margin: 0;
+    padding: 40px;
+    color: #0f1a14;
+}
+
+.container {
+    max-width: 700px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-left: 5px solid #006d64;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-family: inherit;
+    border: 1px solid #ccc;
+}
+
+button {
+    background: #006d64;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+}
+
+a {
+    display: inline-block;
+    margin-top: 15px;
+    color: #006d64;
+    text-decoration: none;
+    font-weight: bold;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>Edit Post</h1>
+
+<form method="POST">
+    <input type="text" name="title" value="{{ post.title }}" required>
+
+    <textarea name="content" rows="10" required>{{ post.content }}</textarea>
+
+    <button type="submit">Update Post</button>
+</form>
+
+<a href="/posts">← Back to Blog</a>
+
+</div>
+
+</body>
+</html>

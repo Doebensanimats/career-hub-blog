@@ -1,35 +1,45 @@
-from flask import Flask, render_template, url_for, abort
-from core.pages import get_pages
+from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
-# Inject pages globally into templates
-@app.context_processor
-def inject_pages():
-    return dict(get_pages=get_pages)
+# temporary storage (in-memory)
+posts = []
 
-
-# Home page
 @app.route("/")
 def index():
-    pages = get_pages()
-
-    for page in pages:
-        page["url"] = url_for("page", slug=page["slug"])
-
-    return render_template("index.html", pages=pages)
+    return render_template("index.html")
 
 
-# Dynamic page system (scalable)
-@app.route("/<slug>/")
-def page(slug):
-    pages = get_pages()
-    page = next((p for p in pages if p["slug"] == slug), None)
+@app.route("/posts")
+def blog_list():
+    return render_template("blog_list.html", posts=posts)
 
-    if not page:
-        abort(404)
 
-    return render_template(f"pages/{slug}.html", page=page)
+@app.route("/post/<int:post_id>")
+def blog_post(post_id):
+    if post_id < 0 or post_id >= len(posts):
+        return "Post not found", 404
+
+    return render_template("blog_post.html", post=posts[post_id])
+
+
+@app.route("/add", methods=["GET", "POST"])
+def add_post():
+    if request.method == "POST":
+        title = request.form.get("title")
+        content = request.form.get("content")
+
+        if not title or not content:
+            return "Title and content required", 400
+
+        posts.append({
+            "title": title,
+            "content": content
+        })
+
+        return redirect(url_for("blog_list"))
+
+    return render_template("add_post.html")
 
 
 if __name__ == "__main__":

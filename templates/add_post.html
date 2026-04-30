@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Add New Post</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #f7f4ee;
+    padding: 40px;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-left: 5px solid #006d64;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background: #006d64;
+    color: white;
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    background: #004f49;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h2>Create New Blog Post</h2>
+
+<form method="POST">
+
+    <input name="title" placeholder="Title" required>
+
+    <input name="slug" placeholder="Slug (e.g. ai-healthcare-future)" required>
+
+    <input name="author" placeholder="Author" required>
+
+    <textarea name="content" rows="10" placeholder="Write your article..." required></textarea>
+
+    <button type="submit">Publish</button>
+
+</form>
+
+</div>
+
+</body>
+</html>
